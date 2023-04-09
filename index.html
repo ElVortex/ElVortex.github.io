@@ -67,6 +67,63 @@
         /* Internet Explorer 10-11 */
         color: gray;
       }
+
+      #sidebar {
+        position: fixed;
+        top: 13.25%;
+        left: 0;
+        bottom: 13.25%;
+        width: 50px;
+        background-color: #000000;
+        color: #fff;
+      }
+
+      #sidebar-button {
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: left 0.3s;
+        background-color: #fff;
+        text-align: center;
+        line-height: 30px;
+      }
+
+      #sidebar-content {
+        position: absolute;
+        top: 0%;
+        left: -230px;
+        bottom: 0%;
+        width: 210px;
+        padding: 10px;
+        overflow-y: auto;
+        transition: left 0.3s;
+        border: 1px solid #ccc;
+        background-color: #000;
+      }
+
+      #sidebar-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0px;
+      }
+
+      #sidebar-content td, #sidebar-content th {
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+
+      #sidebar:hover #sidebar-content {
+        left: 0;
+      }
+
+      #sidebar:hover #sidebar-button {
+        left: 245px;
+      }
+
     </style>
   </head>
 
@@ -134,7 +191,8 @@
             '.js': 'https://jstris.jezevec10.com/',
             '.mn': 'https://minesweeper.online/',
             '.gm': 'https://mail.google.com',
-            '.sa': 'https://sanet.st/full/'
+            '.sa': 'https://sanet.st/full/',
+            '.wp': 'https://web.whatsapp.com/',
             // add more sites here
           };
           var site = siteMap[value];
@@ -156,5 +214,108 @@
       updateClock();
       setInterval(updateClock, 1000);
     </script>
+
+    <div id="sidebar">
+      <div id="sidebar-button">
+        <span style="color: #000000;font-size: 28px;">&#10148;</span>
+      </div>
+      <div id="sidebar-content">
+        <table style="width: 95%;">
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>/s [engine] [query]</td>
+              <td>Search [query] w/ [engine]</td>
+            </tr>
+            <tr>
+              <td>[engine]</td>
+              <td>gg (google.com)</td>
+            </tr>
+            <tr>
+              <td>[engine]</td>
+              <td>st (startpage.com)</td>
+            </tr>
+            <tr>
+              <td>[engine]</td>
+              <td>yh (search.yahoo.com)</td>
+            </tr>
+            <tr>
+              <td>[engine]</td>
+              <td>bg (bing.com)</td>
+            </tr>
+            <tr>
+              <td>[engine]</td>
+              <td>dd (duckduckgo.com)</td>
+            </tr>
+            <tr>
+              <td>.ch</td>
+              <td>Color-Hex</td>
+            </tr>
+            <tr>
+              <td>.dc</td>
+              <td>Discord</td>
+            </tr>
+            <tr>
+              <td>.gh</td>
+              <td>GitHub</td>
+            </tr>
+            <tr>
+              <td>.gm</td>
+              <td>Gmail</td>
+            </tr>
+            <tr>
+              <td>.js</td>
+              <td>Jstris</td>
+            </tr>
+            <tr>
+              <td>.mn</td>
+              <td>Minesweeper</td>
+            </tr>
+            <tr>
+              <td>.cg</td>
+              <td>OpenAI-chat</td>
+            </tr>
+            <tr>
+              <td>.pt</td>
+              <td>ProtonMail</td>
+            </tr>
+            <tr>
+              <td>.sa</td>
+              <td>Sanet</td>
+            </tr>
+            <tr>
+              <td>.op</td>
+              <td>TCB-scans</td>
+            </tr>
+            <tr>
+              <td>.tv</td>
+              <td>TradingView</td>
+            </tr>
+            <tr>
+              <td>.tw</td>
+              <td>Twitch</td>
+            </tr>
+            <tr>
+              <td>.tt</td>
+              <td>Twitter</td>
+            </tr>
+            <tr>
+              <td>.wp</td>
+              <td>Whatsapp</td>
+            </tr>
+            <tr>
+              <td>.yt</td>
+              <td>YouTube</td>
+            </tr>
+            <!-- add more commands here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>
