@@ -6,16 +6,48 @@
       body {
         background-color: black;
         color: white;
-        font-family: Arial, sans-serif;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
       }
       h1 {
         font-size: 3rem;
         margin-top: 50px;
         text-align: center;
       }
+      #clock {
+        font-size: 2rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #search-bar {
+        display: block;
+        margin: 20px auto;
+        width: 50%;
+        height: 40px;
+        font-size: 1.5rem;
+        text-align: center;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+      }
     </style>
+    <script>
+      function getTime() {
+        let date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let time = hours + ":" + minutes + ":" + seconds;
+        document.getElementById("clock").textContent = time;
+      }
+      setInterval(getTime, 1000);
+    </script>
   </head>
   <body>
     <h1>Welcome to my startpage!</h1>
+    <div id="clock"></div>
+    <input id="search-bar" type="text" placeholder="Enter address or search query...">
   </body>
 </html>
