@@ -13,7 +13,7 @@
       }
 
       .clock {
-        font-size: 7em;
+        font-size: 9em;
         padding-top: 15px;
       }
 
@@ -124,16 +124,57 @@
         left: 245px;
       }
 
+      .left-column {
+        position: fixed;
+        top: 0;
+        right: 175px;
+        bottom: 0;
+        width: 175px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .right-column {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 175px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+      }
+
+      .box img {
+        width: 100%;
+        height: auto;
+      }
+
     </style>
   </head>
 
   <body>
     <div class="clock" id="clock"></div>
     <div class="search-container">
-      <input type="text" placeholder="[Vortex@VortexOS] search query" autofocus style="text-align: center;" />
+      <input type="text" id="search-bar" placeholder="[Vortex@VortexOS] search query" autofocus style="text-align: center;" />
     </div>
 
     <script>
+      const searchBar = document.getElementById('search-bar');
+      window.addEventListener('beforeunload', () => {
+        searchBar.value = '';
+      });
+
       function updateClock() {
         var now = new Date();
         var hours = now.getHours();
@@ -147,14 +188,14 @@
         var input = document.querySelector(".search-container input");
         var value = input.value.trim();
 
-        if (value.startsWith('/s')) {
+        if (value.startsWith('/s') || value.startsWith('\\s')) {
           // search command
           var args = value.split(' ');
-          var searchEngine = 'https://www.google.com/search?q=';
+          var searchEngine = 'https://www.startpage.com/do/search?query=';
           switch (args[1]) {
             case 'gg':
               searchEngine = 'https://www.google.com/search?q=';
-              break;
+              break;gi
             case 'st':
               searchEngine = 'https://www.startpage.com/do/search?query=';
               break;
@@ -167,15 +208,23 @@
             case 'bg':
               searchEngine = 'https://www.bing.com/search?q=';
               break;
-            // add more search engines here
+            // add more search engines
             default:
-              // default to google search
+              // default to startpage
               searchEngine = 'https://www.startpage.com/do/search?query=';
               break;
           }
           var query = encodeURIComponent(args.slice(2).join(' '));
           window.location.href = searchEngine + query;
-        } else if (value.startsWith('.')) {
+        }
+        else if (value.startsWith('/y') || value.startsWith('\\y')) {
+          // youtube search command
+          var args = value.split(' ');
+          var searchEngine = 'https://www.youtube.com/results?search_query=';
+          var query = encodeURIComponent(args.slice(1).join(' '));
+          window.location.href = searchEngine + query;
+        }
+        else if (value.startsWith('.')) {
           // site command
           var siteMap = {
             '.tt': 'https://twitter.com/',
@@ -199,9 +248,10 @@
           if (site) {
             window.location.href = site;
           }
-        } else {
-          // default to google search
-          window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(value);
+        }
+        else {
+          // default to startpage
+          window.location.href = 'https://www.startpage.com/do/search?query=' + encodeURIComponent(value);
         }
       }
       var input = document.querySelector(".search-container input");
@@ -316,6 +366,61 @@
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="left-column">
+      <a href="https://wiki.archlinux.org">
+        <div class="box">
+          <img src="https://i.imgur.com/YMkcmvI.png" alt="Image 1">
+        </div>
+      </a>
+      <a href="https://chat.openai.com">
+        <div class="box">
+          <img src="https://i.imgur.com/wpEqcHD.png" alt="Image 1">
+        </div>
+      </a>
+      <a href="https://web.whatsapp.com">
+        <div class="box">
+          <img src="https://i.imgur.com/4RSHLiE.png" alt="Image 1">
+        </div>
+      </a>
+      <a href="https://onepiecechapters.com">
+        <div class="box">
+          <img src="https://i.imgur.com/ou9YhZw.png" alt="Image 1">
+        </div>
+      </a>
+      <a href="https://jstris.jezevec10.com/">
+        <div class="box">
+          <img src="https://i.imgur.com/9sxwzWH.png" alt="Image 1">
+        </div>
+      </a>
+    </div>
+
+    <div class="right-column">
+      <a href="https://twitter.com">
+        <div class="box">
+          <img src="https://i.imgur.com/e435seo.png" alt="Image 1">
+        </div>
+      </a>
+      <a href="https://youtube.com">
+        <div class="box">
+          <img src="https://i.imgur.com/VBBe0Xy.png" alt="Image 3">
+        </div>
+      </a>
+      <a href="https://github.com">
+        <div class="box">
+          <img src="https://i.imgur.com/yJsy5om.png" alt="Image 3">
+        </div>
+      </a>
+      <a href="https://tradingview.com">
+        <div class="box">
+          <img src="https://i.imgur.com/cVNPWtF.png" alt="Image 2">
+        </div>
+      </a>
+      <a href="https://mail.google.com">
+        <div class="box">
+          <img src="https://i.imgur.com/JuvQFmB.png" alt="Image 3">
+        </div>
+      </a>
     </div>
   </body>
 </html>
